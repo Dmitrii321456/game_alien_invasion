@@ -21,6 +21,8 @@ class Ship():
         # Флаг перемещения
         self.moving_right = False
         self.moving_left = False
+        self.moving_down = False
+        self.moving_up = False
 
     def update(self):
         """Обновление позиции корабля с учетом флага"""
@@ -29,6 +31,12 @@ class Ship():
 
         if self.moving_left and self.rect.left > 0:
             self.center -= self.air_settings.ship_speed_factor
+
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.y += self.air_settings.ship_speed_factor
+
+        if self.moving_up and self.rect.top > self.screen_rect.top:
+            self.rect.y -= self.air_settings.ship_speed_factor
 
         self.rect.centerx = self.center
 
